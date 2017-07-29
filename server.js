@@ -33,24 +33,27 @@ var scoreboard2 = redis.zrangebyscore("scoreboard", 0, 999999, "WITHSCORES", sco
 
 var players = [];
 
-function Player (id) {
+function Player (id, nickName) {
   this.id = id;
   this.x = 0;
   this.y = 0;
   this.z = 0;
+  this.nickName = nickName;
   this.entity = null;
   this.lastCollision = null;
 }
 
 io.sockets.on('connection', function(socket) {
   console.log('new connection');
-  socket.on('initialize', function() {
+  socket.on('initialize', function(data) {
     var idNum = players.length;
-    var newPlayer = new Player (idNum);
+    var nickName = data.nickName;
+    var newPlayer = new Player (idNum, nickName);
+
 
     players.push(newPlayer);
 
-    socket.emit('playerData', {id: idNum, players: players});
+    socket.emit('playerData', {id: idNum, nickName: nickName, players: players});
 
 
     socket.broadcast.emit('playerJoined', newPlayer);
