@@ -16,9 +16,9 @@ Movement.prototype.initialize = function() {
 Movement.prototype.update = function(dt) {
   var forceX = 0;
   var forceZ = 0;
-    
+
   if (!window.moveLock) {
-      // calculate force based on pressed keys
+    // calculate force based on pressed keys
     if (this.app.keyboard.isPressed(pc.KEY_A)) {
       forceX = -this.speed;
     }
@@ -44,6 +44,7 @@ Movement.prototype.update = function(dt) {
       forceZ += this.speed;
     }
 
+<<<<<<< HEAD:public/files/assets/8716508/1/movement.js
     var curVelocity = this.entity.rigidbody.linearVelocity;
 <<<<<<< HEAD:public/files/assets/8699036/1/movement.js
 <<<<<<< HEAD
@@ -65,9 +66,12 @@ Movement.prototype.update = function(dt) {
 >>>>>>> 8bf65a344ebb1bcedea4bfa4d323caa262161085
 =======
       
+=======
+>>>>>>> 3fde3e53ad7ee6a281d0b6c3aa9da14ded965f50:public/files/assets/8699036/1/movement.js
     // boost on space bar
-    if (curVelocity.data[0] !== 0) {
-      if (this.app.keyboard.isPressed(pc.KEY_SPACE)) {
+    var curVelocity = this.entity.rigidbody.linearVelocity;
+    if (this.app.keyboard.isPressed(pc.KEY_SPACE)) {
+      if (curVelocity.data[0] !== 0) {
         var normalizer = Math.sqrt(Math.pow(curVelocity.data[0], 2) + Math.pow(curVelocity.data[2], 2));
         var nx = curVelocity.data[0] / normalizer;
         var ny = curVelocity.data[2] / normalizer;

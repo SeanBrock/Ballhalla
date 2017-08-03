@@ -5,7 +5,7 @@ Teleportable.prototype.initialize = function() {
   this.lastTeleportTo = null;
   this.lastTeleport = Date.now();
   this.startPosition = this.entity.getPosition().clone();
-    
+
   this.entity.script.on('destroy', function() {
     console.log('TELEPORTABLE DESTROYED');
   });
@@ -20,10 +20,9 @@ Teleportable.prototype.update = function(dt) {
     targetDiv.style.display = 'block';
 
     this.entity.sound.play('wilhelm');
-      
     this.app.fire('gameover');
     //this is where we delete the dead player
-      //send event to server from array
+    //send event to server from array
     window.socket.emit('deletePlayer', this.entity.id); //socket player listener on server
     this.teleport(this.lastTeleportFrom, this.lastTeleportTo);
 <<<<<<< HEAD
@@ -31,10 +30,10 @@ Teleportable.prototype.update = function(dt) {
     window.clientCurrentPlayerReference = this.entity;
 >>>>>>> 8bf65a344ebb1bcedea4bfa4d323caa262161085
     //this.entity.destroy();
-    
+
 
   } else if (pos.y < -4 && this.entity.name !== 'Player') {
-      console.log('this should never be run');
+    console.log('this should never be run');
     this.entity.destroy();
   }
 };
